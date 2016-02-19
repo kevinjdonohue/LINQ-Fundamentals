@@ -16,28 +16,15 @@ namespace LINQFundamentalsTests
             //arrange   
             IEnumerable<Employee> employees = GetEmployees();
 
-            //IEnumerable<Employee> expectedEmployees = new List<Employee>() {
-            //    new Employee
-            //    {
-            //        ID = 2,
-            //        Name = "Poonam",
-            //        HireDate = new DateTime(2002, 10, 15)
-            //    },
-            //    new Employee
-            //    {
-            //        ID = 1,
-            //        Name = "Scott",
-            //        HireDate = new DateTime(2002, 3, 5)
-            //    }
-            //};
-
             //act
             //IEnumerable<Employee> employeesHiredBefore2005 = from e in employees
             //                              where e.HireDate.Year < 2002
             //                              orderby e.Name
             //                              select e;
 
-            List<Employee> employeesHiredBefore2005 = employees.Where(e => e.HireDate.Year < 2002).OrderBy(e => e.Name).ToList();
+            List<Employee> employeesHiredBefore2005 = employees
+                .Where(e => e.HireDate.Year < 2002)
+                .OrderBy(e => e.Name).ToList();
 
             //assert
             employeesHiredBefore2005.Should()
@@ -48,23 +35,31 @@ namespace LINQFundamentalsTests
         }
 
         [Test]
-        public void ProvesDeferredExecution()
+        public void ProvesDeferredExecutionOccursInLINQStatement()
         {
             //arrange
-            List<Employee> employees = GetEmployees().ToList();
+            List<Employee> employees = GetEmployees();
+            Employee Scott = employees[0];
+            Employee Poonam = employees[1];
+            Employee Paul = employees[2];
 
             //act
-            IEnumerable<Employee> employeesHiredBefore2005 = employees.Where(e => e.HireDate.Year < 2002).OrderBy(e => e.Name);
+            IEnumerable<Employee> employeesHiredBefore2005 = employees.Where(e => e.HireDate.Year < 2005).OrderBy(e => e.Name);
 
-            //add an additional employee
+            //add an additional employee (should be included, which proves deferred execution has occurred)
             employees.Add(new Employee() { ID = 4, Name = "Linda", HireDate = new DateTime(2000, 1, 1) });
+            Employee Linda = employees[3];
 
             //assert
-            employeesHiredBefore2005.Should().HaveCount(2, "because deferred execution works!");
+            employeesHiredBefore2005.Should().NotBeNullOrEmpty().And.HaveCount(3, "because deferred execution works!");
+            employeesHiredBefore2005.Should().Contain(Linda).And.Contain(Scott).And.Contain(Poonam);
+            employeesHiredBefore2005.Should().NotContain(Paul);
+            employeesHiredBefore2005.Should().StartWith(Linda, "because Linda's name is the first alphabetically, even though it was added last.");
+            employeesHiredBefore2005.Should().EndWith(Scott, "because Scott's name is the last alphabetically.");
         }
 
 
-        private static IEnumerable<Employee> GetEmployees()
+        private static List<Employee> GetEmployees()
         {
             return new List<Employee>()
             {

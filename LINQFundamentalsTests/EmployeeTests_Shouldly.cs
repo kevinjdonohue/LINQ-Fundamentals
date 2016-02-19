@@ -36,28 +36,15 @@ namespace LINQFundamentalsTests
                 }
             };
 
-            //List<Employee> expectedEmployees = new List<Employee>() {
-            //    new Employee
-            //    {
-            //        ID = 1,
-            //        Name = "Scott",
-            //        HireDate = new DateTime(2002, 3, 5)
-            //    },
-            //    new Employee
-            //    {
-            //        ID = 2,
-            //        Name = "Poonam",
-            //        HireDate = new DateTime(2002, 10, 15)
-            //    }
-            //};
-
             //act
             //IEnumerable<Employee> query = from e in employees
             //                              where e.HireDate.Year < 2005
             //                              orderby e.Name
             //                              select e;
 
-            List<Employee> employeesHiredBefore2005 = employees.Where(e => e.HireDate.Year < 2005).OrderBy(e => e.Name).ToList();
+            List<Employee> employeesHiredBefore2005 = employees
+                .Where(e => e.HireDate.Year < 2005)
+                .OrderBy(e => e.Name).ToList();
 
             //assert
             employeesHiredBefore2005.ShouldNotBeNull();

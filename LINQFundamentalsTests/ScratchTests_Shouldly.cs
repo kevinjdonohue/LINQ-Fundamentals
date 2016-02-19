@@ -14,7 +14,7 @@ namespace LINQFundamentalsTests
         {
             //arrange
             Scratch scratch = new Scratch();
-            string[] expectedInstructors = new string[] 
+            string[] expectedInstructors = new string[]
             {
                 "Scott",
                 "Keith",
@@ -28,13 +28,15 @@ namespace LINQFundamentalsTests
             //                                      orderby instructor descending
             //                                      select instructor;
 
-            List<string> instructors = scratch.Instructors.Where(i => i.Length == 5).OrderByDescending(i => i).ToList();
+            List<string> instructors = scratch.Instructors
+                .Where(i => i.Length == 5)
+                .OrderByDescending(i => i).ToList();
 
             //assert        
             instructors.ShouldNotBeNull();
             instructors.Count.ShouldBe(4);
-            instructors.ShouldBe(expectedInstructors);            
+            instructors.ShouldBe(expectedInstructors);
         }
-            
+
     }
 }
