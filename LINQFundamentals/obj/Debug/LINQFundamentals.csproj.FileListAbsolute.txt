@@ -1,0 +1,5 @@
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentals\bin\Debug\LINQFundamentals.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentals\bin\Debug\LINQFundamentals.pdb
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentals\obj\Debug\LINQFundamentals.csprojResolveAssemblyReference.cache
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentals\obj\Debug\LINQFundamentals.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentals\obj\Debug\LINQFundamentals.pdb

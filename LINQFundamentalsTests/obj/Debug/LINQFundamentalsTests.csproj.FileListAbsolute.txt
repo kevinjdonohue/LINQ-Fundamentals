@@ -1,0 +1,16 @@
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\LINQFundamentalsTests.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\LINQFundamentalsTests.pdb
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\FluentAssertions.Core.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\FluentAssertions.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\LINQFundamentals.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\nunit.framework.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\Shouldly.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\LINQFundamentals.pdb
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\FluentAssertions.pdb
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\FluentAssertions.xml
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\FluentAssertions.Core.pdb
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\FluentAssertions.Core.xml
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\bin\Debug\nunit.framework.xml
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\obj\Debug\LINQFundamentalsTests.csprojResolveAssemblyReference.cache
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\obj\Debug\LINQFundamentalsTests.dll
+C:\Users\kevin\documents\visual studio 2015\Projects\LINQFundamentals\LINQFundamentalsTests\obj\Debug\LINQFundamentalsTests.pdb
