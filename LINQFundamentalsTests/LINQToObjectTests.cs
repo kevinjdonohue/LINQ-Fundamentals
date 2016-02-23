@@ -20,7 +20,7 @@ namespace LINQFundamentalsTests
                 .OrderByDescending(p => p.WorkingSet64).ToList();
 
             //assert
-            processList.Should().HaveCount(13);
+            processList.Count.Should().BeGreaterThan(10);
         }
 
         [Test]
