@@ -24,7 +24,6 @@ bld/
 *.[Cc]ache
 !*.[Cc]ache/
 
-
 #DNX
 
 project.lock.json
@@ -55,25 +54,4 @@ artifacts/
 *.svclog
 *.scc
 
-#Visual Studio Profiler
 
-*.psess
-*.vsp
-*.vspx
-*.sap
-
-#ReSharper
-
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
-
-#DotCover
-
-*.dotcover
-
-#NCrunch
-
-_NCrunch_*
-.*crunch*.local.xml
-nCrunchTemp_*
