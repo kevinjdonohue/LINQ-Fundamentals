@@ -14,9 +14,9 @@
 x64/
 x86/
 bld/
-[Bb]in
-[Oo]bj
-[Ll]og
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 
 #Visual Studio 2015 cache/options directory
 
@@ -77,5 +77,3 @@ _ReSharper*/
 _NCrunch_*
 .*crunch*.local.xml
 nCrunchTemp_*
-
-
