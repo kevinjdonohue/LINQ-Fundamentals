@@ -90,7 +90,44 @@ Lambdas are just delegates -- typically use one of two built in delegate types:
 
 Func and Action - rarely will you ever need to define a custom delegate
 
+Action - delegates that don't return anything
 
+Func - delegates that return values
+
+Expression - provides an Expression Tree for a given Func (delegate) - can be compiled to Func or method
+
+Expressions use the same syntax - so you don't have to change anything to use either a Func (delegate) or an Expression
+
+In-Memory LINQ vs. Remote LINQ (say LINQ to SQL):
+
+In-Memory - IEnumerable<T> - take delegates - Func
+
+Remote - IQueryable<T> - take expressions - Expression
+
+In order to understand the functions that are available, see:
+
+Enumerable
+
+and
+
+Queryable
+
+LINQ comprehension queries
+===========================
+
+Puts the language integrated into LINQ
+Begins with a from clause, ends with a select or group (from, let, where, orderby, join)
+Looks like a SQL query (from logically comes first) - helps with intellisense
+
+ex.
+
+string[] cities = { "Boston", "Los Angeles", "Seattle", "London", "Hyderabad" };
+
+IEnumerable<string> filteredCities = 
+  from city in cities
+  where city.StartsWith("L") && city.Length < 15
+  orderby city
+  select city;
 
 
 

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using System;
+using System.Linq.Expressions;
 
 namespace LINQFundamentalsTests
 {
@@ -98,6 +99,20 @@ namespace LINQFundamentalsTests
 
             //assert
             threeTimesThree.Should().Be(9);
+        }
+
+        [Test]
+        public void DemonstratesExpressionCompiledIntoAFunc()
+        {
+            //arrange
+            Expression<Func<int, int, int>> multiply = (x, y) => x * y;
+            Func<int, int, int> multiplyFunc = multiply.Compile();
+
+            //act
+            int fourTimesFour = multiplyFunc(4, 4);
+
+            //assert
+            fourTimesFour.Should().Be(16);
         }
     }
 }
