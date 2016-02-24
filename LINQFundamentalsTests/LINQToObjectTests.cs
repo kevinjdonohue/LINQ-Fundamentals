@@ -31,7 +31,7 @@ namespace LINQFundamentalsTests
                 .Where(t => t.IsPublic).ToList();
 
             //assert
-            types.Should().HaveCount(5, "there are 4 public types.");
+            types.Count.Should().BeGreaterOrEqualTo(5, "there are at least 4 public types.");
             types.Should().Contain(t => t.Name == "LINQToObjectTests");
         }
     }

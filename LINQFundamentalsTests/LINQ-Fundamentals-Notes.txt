@@ -52,5 +52,14 @@ Anonymous Types
 Partial Methods
 
 
+2 ways to write LINQ queries:
+
+1.  LINQ comprehension
+2.  Extension or Lambda expression
+
+
+Extension Methods - add what appear to be "new" instance methods on an existing type
+
+
 
 
