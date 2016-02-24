@@ -60,6 +60,39 @@ Partial Methods
 
 Extension Methods - add what appear to be "new" instance methods on an existing type
 
+Must be defined in a static class - ex. StringExtensions.cs
+
+Namespace must be in scope in order for the extension methods to work
+
+System.Linq defines extension methods for IEnumerable<T> and IQueryable<T>
+
+These include the standard query operators such as:  Select, OrderBy, Where, etc.
+
+HISTORY:
+
+Early on in C# you would have written a named method called a predicate in order to create functionality to be invoked to say find a string in a list.
+
+Then, later, (C# 2.0?) you would create that same bit of functionality but in a delegate in line, instead of a predicate named method.
+
+Starting in C# 3.0 Lambda expressions were introduced -- which are really just anonymous methods in a compact syntax.
+
+GUIDELINES:
+
+Parentheses and Types are optional (mostly) in the signature of a lambda expression
+
+No parentheses if there is only one parameter
+
+You can use the curly braces if you would like, to do things like create local variables, etc. -- but remember spirit of lambda is short expressions
+
+INVOKING LAMBDA EXPRESSIONS:
+
+Lambdas are just delegates -- typically use one of two built in delegate types:
+
+Func and Action - rarely will you ever need to define a custom delegate
+
+
+
+
 
 
 
