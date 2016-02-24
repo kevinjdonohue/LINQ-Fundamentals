@@ -1,0 +1,56 @@
+﻿Motivation:  Make data access easier in .NET languages.
+
+"Integrating data queries into C# has been a goal for years"
+
+Data Impedance Mismatch
+===================================
+
+Typical data access challenges:
+
+1.  Different data types
+2.  Different data sources
+3.  Relationships vs. Hierarchies (ex. relational data vs. XML data)
+4.  Limited Intellisense, syntax, language, etc. support for data access
+
+Manipulating Data
+===================================
+
+Problem:
+The data source generally determines the API and the tools to use:
+
+Object Data:
+
+Generics
+Algorithms
+
+Relational Data:
+
+ADO.NET
+SQL
+
+XML Data:
+
+XmlDocument
+XPATH / XSLT
+
+Solution:
+LINQ - Language Integrated Query - provides general-purpose query facilities for all types of data
+
+
+
+Digging Into C# Features for LINQ
+===================================
+
+topics:
+
+Extension Methods
+Lambda Expressions
+Expression Trees
+Query Expressions
+Type Inference
+Anonymous Types
+Partial Methods
+
+
+
+
