@@ -7,5 +7,6 @@ namespace LINQFundamentals
         public int ID { get; set; }
         public string Name { get; set; }
         public DateTime HireDate { get; set; }
+        public int DepartmentID { get; set; }
     }
 }
