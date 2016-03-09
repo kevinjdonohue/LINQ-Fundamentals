@@ -82,8 +82,6 @@ namespace LINQFundamentalsTests
         //    }
         //}
 
-
-
         private static void WriteOutGroupedEmployees(IOrderedEnumerable<IGrouping<char, Employee>> groupedEmployees, string title)
         {
             Console.WriteLine(title);
