@@ -36,12 +36,6 @@ namespace LINQFundamentalsTests
                 orderby e.DepartmentID descending, e.Name ascending
                 select e;
 
-            //var employeeQuery2 =
-            //    new EmployeeRepository().GetAll()
-            //    .Where(e => e.DepartmentID < 3 && e.ID < 10)
-            //    .OrderByDescending(e => e.DepartmentID)
-            //    .OrderBy(e => e.Name);
-
             var employeeQuery3 =
                 new EmployeeRepository().GetAll()
                 .Where(e => e.DepartmentID < 3 && e.ID < 10)
@@ -49,8 +43,6 @@ namespace LINQFundamentalsTests
                 .ThenBy(e => e.Name);
 
             WriteOutEmployeeList(employeeQuery1, "employeeQuery1");
-
-            //WriteOutEmployeeList(employeeQuery2, "employeeQuery2");
 
             WriteOutEmployeeList(employeeQuery3, "employeeQuery3");
 
