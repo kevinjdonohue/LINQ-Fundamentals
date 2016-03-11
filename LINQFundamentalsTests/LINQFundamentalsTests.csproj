@@ -62,6 +62,8 @@
     <Compile Include="EmployeeTests_FluentAssertions.cs" />
     <Compile Include="ExtensionMethodTests.cs" />
     <Compile Include="LINQComprehensionQueriesTests.cs" />
+    <Compile Include="LinqGenerationTests.cs" />
+    <Compile Include="LinqGroupingTests.cs" />
     <Compile Include="LinqJoinTests.cs" />
     <Compile Include="LINQOperatorsTests.cs" />
     <Compile Include="LinqPartitioningTests.cs" />

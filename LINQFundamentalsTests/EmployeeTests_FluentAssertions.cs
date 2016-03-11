@@ -10,18 +10,20 @@ namespace LINQFundamentalsTests
     [TestFixture]
     public class EmployeeTests_FluentAssertions
     {
+        List<Employee> employees;
+
+        [SetUp]
+        public void SetUp()
+        {
+            employees = new EmployeeRepository().GetEmployeesWithHireDates();
+        }
+
         [Test]
         public void ShouldReturnAListOfEmployeesWithAHireDateGreaterThan2005()
         {
             //arrange   
-            IEnumerable<Employee> employees = GetEmployees();
 
             //act
-            //IEnumerable<Employee> employeesHiredBefore2005 = from e in employees
-            //                              where e.HireDate.Year < 2002
-            //                              orderby e.Name
-            //                              select e;
-
             List<Employee> employeesHiredBefore2005 = employees
                 .Where(e => e.HireDate.Year < 2002)
                 .OrderBy(e => e.Name).ToList();
@@ -38,7 +40,6 @@ namespace LINQFundamentalsTests
         public void ProvesDeferredExecutionOccursInLINQStatement()
         {
             //arrange
-            List<Employee> employees = GetEmployees();
             Employee Scott = employees[0];
             Employee Poonam = employees[1];
             Employee Paul = employees[2];
@@ -56,32 +57,6 @@ namespace LINQFundamentalsTests
             employeesHiredBefore2005.Should().NotContain(Paul);
             employeesHiredBefore2005.Should().StartWith(Linda, "because Linda's name is the first alphabetically, even though it was added last.");
             employeesHiredBefore2005.Should().EndWith(Scott, "because Scott's name is the last alphabetically.");
-        }
-
-
-        private static List<Employee> GetEmployees()
-        {
-            return new List<Employee>()
-            {
-                new Employee
-                {
-                    ID = 1,
-                    Name = "Scott",
-                    HireDate = new DateTime(2001, 3, 5)
-                },
-                new Employee
-                {
-                    ID = 2,
-                    Name = "Poonam",
-                    HireDate = new DateTime(2002, 10, 15)
-                },
-                new Employee
-                {
-                    ID = 3,
-                    Name = "Paul",
-                    HireDate = new DateTime(2007, 10, 11)
-                }
-            };
         }
     }
 }

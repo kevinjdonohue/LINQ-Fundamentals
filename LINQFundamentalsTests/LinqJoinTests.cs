@@ -9,12 +9,20 @@ namespace LINQFundamentalsTests
     [TestFixture]
     public class LinqJoinTests
     {
+        List<Employee> employees;
+        List<Department> departments;
+
+        [SetUp]
+        public void SetUp()
+        {
+            employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+            departments = new DepartmentRepository().GetDepartments();
+        }
+
         [Test]
         public void ShouldReturnEmployeesWithADepartment()
         {
             //arrange
-            var employees = GetEmployees();
-            var departments = GetDepartments();
 
             //act
             //join behaves like a SQL INNER JOIN
@@ -34,53 +42,10 @@ namespace LINQFundamentalsTests
         }
 
         [Test]
-        public void ShouldReturnDepartmentsWithTheirRespectiveEmployees()
+        public void ShouldReturnAllDepartmentsWithTheirRespectiveEmployees()
         {
             //arrange
-            var employees = GetEmployees();
-            var departments = GetDepartments();
-
-            //act
-            var groupJoinResults = departments.GroupJoin(employees,
-                d => d.ID,
-                e => e.DepartmentID,
-                (d, eg) => new { DepartmentName = d.Name, Employees = eg });
-
-            //assert
-            groupJoinResults.Should().HaveCount(3);
-            //TODO:  Need to figure out how to verify the group join results have the correct contents
-        }
-
-
-
-
-
-
-        private List<Department> GetDepartments()
-        {
-            return new List<Department>()
-            {
-                new Department()
-                {
-                    ID = 1,
-                    Name = "Engineering"
-                },
-                new Department()
-                {
-                    ID = 2,
-                    Name = "Sales"
-                },
-                new Department()
-                {
-                    ID = 3,
-                    Name = "Skunkworks"
-                }
-            };
-        }
-
-        private List<Employee> GetEmployees()
-        {
-            return new List<Employee>()
+            List<Employee> expectedEngineeringEmployees = new List<Employee>()
             {
                 new Employee
                 {
@@ -93,7 +58,11 @@ namespace LINQFundamentalsTests
                     ID = 2,
                     Name = "Poonam",
                     DepartmentID = 1
-                },
+                }
+            };
+
+            List<Employee> expectedSalesEmployees = new List<Employee>()
+            {
                 new Employee
                 {
                     ID = 3,
@@ -101,6 +70,77 @@ namespace LINQFundamentalsTests
                     DepartmentID = 2
                 }
             };
+
+            //act
+            //group join behaves like a SQL OUTER JOIN
+            var groupJoinResults = departments.GroupJoin(employees,
+                d => d.ID,
+                e => e.DepartmentID,
+                (d, eg) => new { DepartmentName = d.Name, Employees = eg }).ToList();
+
+            //assert
+            groupJoinResults.Should().HaveCount(3);
+            groupJoinResults.Should().Equal(departments, (d1, d2) => d1.DepartmentName == d2.Name);
+
+            IEnumerable<Employee> actualEngineeringEmployees = groupJoinResults[0].Employees;
+            actualEngineeringEmployees.Should().Equal(expectedEngineeringEmployees, (e1, e2) => e1.Name == e2.Name);
+
+            IEnumerable<Employee> actualSalesEmployees = groupJoinResults[1].Employees;
+            actualSalesEmployees.Should().Equal(expectedSalesEmployees, (e1, e2) => e1.Name == e2.Name);
+
+            IEnumerable<Employee> actualSkunkworksEmployees = groupJoinResults[2].Employees;
+            actualSkunkworksEmployees.Should().HaveCount(0, "they should not have any employees.");
+        }
+
+        [Test]
+        public void ShouldReturnDepartmentsWithTheirRespectiveEmployees()
+        {
+            //arrange
+            List<Employee> expectedEngineeringEmployees = new List<Employee>()
+            {
+                new Employee
+                {
+                    ID = 1,
+                    Name = "Scott",
+                    DepartmentID = 1
+                },
+                new Employee
+                {
+                    ID = 2,
+                    Name = "Poonam",
+                    DepartmentID = 1
+                }
+            };
+
+            List<Employee> expectedSalesEmployees = new List<Employee>()
+            {
+                new Employee
+                {
+                    ID = 3,
+                    Name = "Andy",
+                    DepartmentID = 2
+                }
+            };
+
+            //act
+            //group join behaves like a SQL OUTER JOIN
+            var groupJoinResults = departments.GroupJoin(employees,
+                d => d.ID,
+                e => e.DepartmentID,
+                (d, eg) => new { DepartmentName = d.Name, Employees = eg }).ToList();
+
+
+            var groupJoinResults2 = from department in departments
+                                    join employee in employees
+                                    on department.ID equals employee.DepartmentID
+                                    into employeeGroup
+                                    from eg in employeeGroup.DefaultIfEmpty()
+                                    select new { department.Name, Employee = eg == null ? "" : eg.Name };
+
+            //TODO:  Figure out how to re-write this query in the lambda syntax instead of this longhand
+
+            //assert
+            groupJoinResults.Should().HaveCount(3);
         }
     }
 }

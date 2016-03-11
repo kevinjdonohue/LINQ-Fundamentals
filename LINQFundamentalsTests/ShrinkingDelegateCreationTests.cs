@@ -8,11 +8,18 @@ namespace LINQFundamentalsTests
     [TestFixture]
     public class ShrinkingDelegateCreationTests
     {
+        Employee[] employees;
+
+        [SetUp]
+        public void SetUp()
+        {
+            employees = new EmployeeRepository().GetArrayOfEmployeesWithHireDates();
+        }
+
         [Test]
         public void DemonstratesPredicate()
         {
             //arrange
-            Employee[] employees = GetEmployees();
             const string expectedEmployeeName = "Scott";
 
             //act
@@ -26,7 +33,6 @@ namespace LINQFundamentalsTests
         public void DemonstratesDelegate()
         {
             //arrange
-            Employee[] employees = GetEmployees();
             const string expectedEmployeeName = "Scott";
             const string searchToken = "Scott";
 
@@ -42,7 +48,6 @@ namespace LINQFundamentalsTests
         public void DemonstratesVerboseLambdaExpression()
         {
             //arrange
-            Employee[] employees = GetEmployees();
             const string expectedEmployeeName = "Scott";
             const string searchToken = "Scott";
 
@@ -59,7 +64,6 @@ namespace LINQFundamentalsTests
         public void DemonstratesShortLambdaExpression()
         {
             //arrange
-            Employee[] employees = GetEmployees();
             const string expectedEmployeeName = "Scott";
             const string searchToken = "Scott";
 
@@ -84,15 +88,6 @@ namespace LINQFundamentalsTests
         private bool findScottPredicate(Employee employee)
         {
             return (employee.Name == "Scott");
-        }
-
-        private static Employee[] GetEmployees()
-        {
-            return new Employee[]
-            {
-                new Employee {ID = 1, Name = "Scott", HireDate=new System.DateTime(2002, 12, 1) },
-                new Employee {ID = 2, Name = "Poonam", HireDate = new System.DateTime(2003, 11, 10) }
-            };
         }
     }
 }
