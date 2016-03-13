@@ -124,12 +124,6 @@ namespace LINQFundamentalsTests
 
             //act
             //group join behaves like a SQL OUTER JOIN
-            var groupJoinResults = departments.GroupJoin(employees,
-                d => d.ID,
-                e => e.DepartmentID,
-                (d, eg) => new { DepartmentName = d.Name, Employees = eg }).ToList();
-
-
             var groupJoinResults2 = from department in departments
                                     join employee in employees
                                     on department.ID equals employee.DepartmentID
@@ -140,7 +134,7 @@ namespace LINQFundamentalsTests
             //TODO:  Figure out how to re-write this query in the lambda syntax instead of this longhand
 
             //assert
-            groupJoinResults.Should().HaveCount(3);
+            groupJoinResults2.Should().HaveCount(4);
         }
     }
 }
