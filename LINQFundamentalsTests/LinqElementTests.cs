@@ -38,6 +38,34 @@ namespace LINQFundamentalsTests
         }
 
         [Test]
+        public void AccessingACollectionWithFirstWithAnIncorrectPredicateShouldCauseAnException()
+        {
+            //arrange
+            IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+
+            //act
+            Action action = () => employees.First(e => e.Name.StartsWith("X"));
+
+            //assert
+            action.ShouldThrow<InvalidOperationException>().WithMessage("Sequence contains no matching element");
+        }
+
+        [Test]
+        public void AccessingACollectionWithFirstWithACorrectPredicateShouldReturnTheFirstMatchingELement()
+        {
+            //arrange
+            IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+
+            //act
+            Employee sEmployee = employees.First(e => e.Name.StartsWith("S"));
+
+            //assert
+            sEmployee.Should().NotBeNull();
+            sEmployee.Name.Should().Be("Scott");
+
+        }
+
+        [Test]
         public void AccessingAnEmptyCollectionWithFirstOrDefaultShouldReturnNull()
         {
             //arrange
@@ -48,6 +76,49 @@ namespace LINQFundamentalsTests
 
             //assert
             result.Should().BeNull();
+        }
+
+        [Test]
+        public void AccessingACollectionWithFirstOrDefaultShouldFirstElement()
+        {
+            //arrange
+            IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+
+            //act
+            Employee xEmployee = employees.FirstOrDefault();
+
+
+            //assert
+            xEmployee.Should().NotBeNull();
+            xEmployee.Name.Should().Be("Scott");
+        }
+
+        [Test]
+        public void AccessingACollectionWithFirstOrDefaultWithABadPredicateShouldReturnNull()
+        {
+            //arrange
+            IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+
+            //act
+            Employee xEmployee = employees.FirstOrDefault(e => e.Name.StartsWith("X"));
+
+            //assert
+            xEmployee.Should().BeNull();
+        }
+
+
+        [Test]
+        public void AccessingACollectionWithFirstOrDefaultWithAGoodPredicateShouldReturnFirstMatchingElement()
+        {
+            //arrange
+            IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+
+            //act
+            Employee xEmployee = employees.FirstOrDefault(e => e.Name.StartsWith("P"));
+
+            //assert
+            xEmployee.Should().NotBeNull();
+            xEmployee.Name.Should().Be("Poonam");
         }
 
         [Test]
@@ -104,7 +175,7 @@ namespace LINQFundamentalsTests
         }
 
         [Test]
-        public void AccessingACollectionWithSingleShouldReturnCauseAnException()
+        public void AccessingACollectionWithSingleShouldCauseAnException()
         {
             //arrange
             IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
@@ -114,6 +185,33 @@ namespace LINQFundamentalsTests
 
             //assert
             action.ShouldThrow<InvalidOperationException>().WithMessage("Sequence contains more than one element");
+        }
+
+        [Test]
+        public void AccessingACollectionWithSingleWithABadPredicateShouldCauseAnException()
+        {
+            //arrange
+            IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+
+            //act
+            Action action = () => employees.Single(e => e.Name.StartsWith("X"));
+
+            //assert
+            action.ShouldThrow<InvalidOperationException>().WithMessage("Sequence contains no matching element");
+        }
+
+        [Test]
+        public void AccessingACollectionWithSingleWithAGoodPredicateShouldReturnElement()
+        {
+            //arrange
+            IEnumerable<Employee> employees = new EmployeeRepository().GetEmployeesWithDepartmentIDs();
+
+            //act
+            Employee pEmployee = employees.Single(e => e.Name.StartsWith("P"));
+
+            //assert
+            pEmployee.Should().NotBeNull();
+            pEmployee.Name.Should().Be("Poonam");
         }
 
         [Test]
