@@ -32,3 +32,4 @@ _ReSharper*/
 *.pdb
 .vs/LINQFundamentals/v14/.suo
 bin/
+obj/
