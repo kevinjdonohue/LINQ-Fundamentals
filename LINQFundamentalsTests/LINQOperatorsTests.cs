@@ -69,6 +69,25 @@ namespace LINQFundamentalsTests
         }
 
         [Test]
+        public void ShouldReturnIntersectionOfYears()
+        {
+            //arrange
+            int[] startYearsTeam1 = { 2000, 2002, 2004, 2006, 2007 };
+            int[] startYearsTeam2 = { 2000, 2001, 2003, 2005, 2007 };
+            IEnumerable<int> expectedIntersectingYears = new List<int>()
+            {
+                2000,
+                2007
+            };
+
+            //act
+            IEnumerable<int> actualIntersectingYears = startYearsTeam1.Intersect(startYearsTeam2);
+
+            //assert
+            actualIntersectingYears.Should().Contain(expectedIntersectingYears, "because the lists have 2 years in common");
+        }
+
+        [Test]
         public void ShouldReturnADistinctListOfBooks()
         {
             //arrange

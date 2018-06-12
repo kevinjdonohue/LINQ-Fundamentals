@@ -78,6 +78,7 @@
     <Compile Include="LINQWithVarAndAnonymousTypes.cs" />
     <Compile Include="ScratchTests_Shouldly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectTests.cs" />
     <Compile Include="ShrinkingDelegateCreationTests.cs" />
   </ItemGroup>
   <ItemGroup>

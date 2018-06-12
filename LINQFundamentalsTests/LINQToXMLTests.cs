@@ -24,7 +24,7 @@ namespace LINQFundamentalsTests
                 new XElement(instructor, "Keith"),
                 new XElement(instructor, "Scott"));
 
-            int numberOfScotts = instructors.Elements("instructor").Where(i => i.Value == "Scott").Count();
+            int numberOfScotts = instructors.Elements("instructor").Count(i => i.Value == "Scott");
 
             //assert
             instructors.Should().NotBeNull();
